@@ -1,26 +1,8 @@
-const sampleDataMonthlyGym = [
-    {
-      orderId: 8
-    },
-  ]
-
   let monthlyAmount;
   function setAmountMonthlyGym() {
-        monthlyAmount = 33432;
-        document.getElementById('gym-monthly-amount').value = 33432;
-    }
-  
-  
-  
-  // Function to fetch data from the API
-  async function fetchDataMonthlyGym() {
-      try {
-          const response = await fetch('https://example.com/api/products');
-          return await response.json();
-      } catch (error) {
-          console.error('Error fetching data:', error);
-      }
-    }
+      monthlyAmount = 33432;
+      document.getElementById('gym-monthly-amount').value = 33432;
+  }
   
   
     // Function to get the value of an element by its ID
@@ -33,7 +15,7 @@ const sampleDataMonthlyGym = [
   }
   
     // Function to retrieve billing details and order notes
-    function getBillingDetailsMonthlyGym(theOrderID) {
+    function getBillingDetailsMonthlyGym() {
       const firstName = getValueByIdMonthlyGym('gym-monthly-first-name');
       const lastName = getValueByIdMonthlyGym('gym-monthly-last-name');
       const address = getValueByIdMonthlyGym('gym-monthly-req-st-address');
@@ -63,11 +45,33 @@ const sampleDataMonthlyGym = [
             console.log(response.data);
             // Handle success here
             if(response?.data?.data?.status == "success") {
-              let message = 'Payment complete! Reference: ' + firstRes.reference;
-              alert(message);
-              setTimeout(() => {
-                window.location.href = "http://127.0.0.1:5500/payment-confirmed.html?id=" + theOrderID;
-              }, 2000)
+              document.getElementById('gym-monthly-text').innerHTML = "Please wait while we confirm your payment..."
+              // let message = 'Payment complete! Reference: ' + firstRes.reference;
+              const data = {
+                subscription_type: "monthly",
+                new: 1,
+                tx_reference: firstRes.reference,
+                first_name: firstName,
+                last_name: lastName,
+                address: address,
+                email: email,
+                phone_number: phone,
+                is_active: 1,
+              }
+              axios.post('http://127.0.0.1:8001/api/users', data)
+              .then(response => {
+                console.log('Response:', response.data);
+                document.cookie = `gymID=${response?.data?.id}; path=/;`;
+                setTimeout(() => {
+                  window.location.href = "http://127.0.0.1:5500/payment-confirmed.html";
+                }, 2000)
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+              // setTimeout(() => {
+              //   window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
+              // }, 2000)
             }
           })
           .catch(function(error) {
@@ -96,41 +100,33 @@ const sampleDataMonthlyGym = [
       // use return in real context instead of console.log
     }
   
-    async function checkoutButtonMonthlyGym(productID) {
+    async function checkoutButtonMonthlyGym() {
   
-      getBillingDetailsMonthlyGym(productID)
-      try {
-          const response = await fetch('https://example.com/api/products');
-          return await response.json();
-      } catch (error) {
-          console.error('Error fetching data:', error);
-      }
+      getBillingDetailsMonthlyGym()
     }
   
   
     
     // Function to create the HTML structure for a product
-    function createProductHTMLMonthlyGym(product) {
+    function createProductHTMLMonthlyGym() {
       return `
-      <button type="button" onclick="checkoutButtonMonthlyGym(${product.orderId})" class="button button-outline-secondary">Place Order</button>
+      <button type="button" onclick="checkoutButtonMonthlyGym()" class="button button-outline-secondary">Place Order</button>
       `;
     }
     
     // Function to populate the item container with fetched data
-    function populateItemContainerMonthlyGym(data) {
+    function populateItemContainerMonthlyGym() {
       const itemContainer = document.getElementById('gym-monthly-button-container');
     
-      data.forEach(product => {
-        const productHTML = createProductHTMLMonthlyGym(product);
+        const productHTML = createProductHTMLMonthlyGym();
         itemContainer.innerHTML += productHTML;
-      });
     }
 
 
     
     // Fetch data and populate the item container on page load
     document.addEventListener('DOMContentLoaded', () => {
-      populateItemContainerMonthlyGym(sampleDataMonthlyGym);
+      populateItemContainerMonthlyGym();
       setAmountMonthlyGym()
     
           // fetchData()
