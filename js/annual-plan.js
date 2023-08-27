@@ -49,7 +49,7 @@ function getValueByIdAnnualGym(elementId) {
             // let message = 'Payment complete! Reference: ' + firstRes.reference;
             const data = {
               subscription_type: "annually",
-              new: 1,
+              new: 0,
               tx_reference: firstRes.reference,
               first_name: firstName,
               last_name: lastName,
@@ -63,7 +63,7 @@ function getValueByIdAnnualGym(elementId) {
               console.log('Response:', response.data);
               document.cookie = `gymID=${response?.data?.id}; path=/;`;
               setTimeout(() => {
-                window.location.href = "http://127.0.0.1:5500/payment-confirmed.html";
+                window.location.href = "https://gym.buckinghammall.com/payment-confirmed.html";
               }, 2000)
             })
             .catch(error => {
