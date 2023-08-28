@@ -25,7 +25,7 @@ function getValueByIdQuaterlyGym(elementId) {
     const phone = getValueByIdQuaterlyGym('gym-quaterly-phone');
 
     let handler = PaystackPop.setup({
-      key: 'pk_test_deac0f7a7e53ab5cccd213e3690a9dc84861655e', // Replace with your public key
+      key: 'pk_live_7e1a4cb8c8993649d3c9945479f39f8f8405679f', // Replace with your public key
       email: email,
       amount: quaterlyAmount * 100,
       // label: "Optional string that replaces customer email"
@@ -37,12 +37,12 @@ function getValueByIdQuaterlyGym(elementId) {
         axios.get('https://api.paystack.co/transaction/verify/' + resp.reference,
         {
           headers: {
-            authorization: "Bearer sk_test_ee0f95dce9cc25ad79f964ffd11689013af57e2d"
+            authorization: "Bearer sk_live_cf988a7190414e20bfd5f8c017ad1626f79a6380"
           }
         }
         )
         .then(function(response) {
-          console.log(response.data);
+          // console.log(response.data);
           // Handle success here
           if(response?.data?.data?.status == "success") {
             document.getElementById('gym-quaterly-text').innerHTML = "Please wait while we confirm your payment..."
@@ -60,14 +60,14 @@ function getValueByIdQuaterlyGym(elementId) {
             }
             axios.post('https://buckinghammall-gym-api.eddyspace.com/api/users', data)
             .then(response => {
-              console.log('Response:', response.data);
+              // console.log('Response:', response.data);
               document.cookie = `gymID=${response?.data?.id}; path=/;`;
               setTimeout(() => {
                 window.location.href = "https://gym.buckinghammall.com/payment-confirmed.html";
               }, 2000)
             })
             .catch(error => {
-              console.error('Error:', error);
+              // console.error('Error:', error);
             });
             // setTimeout(() => {
             //   window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
@@ -75,7 +75,7 @@ function getValueByIdQuaterlyGym(elementId) {
           }
         })
         .catch(function(error) {
-          console.error('GET request failed:', error);
+          // console.error('GET request failed:', error);
           // Handle error here
         });
 

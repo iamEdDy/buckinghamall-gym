@@ -68,7 +68,7 @@
       
   
       let handler = PaystackPop.setup({
-        key: 'pk_test_deac0f7a7e53ab5cccd213e3690a9dc84861655e', // Replace with your public key
+        key: 'pk_live_7e1a4cb8c8993649d3c9945479f39f8f8405679f', // Replace with your public key
         email: email,
         amount: subAmount * 100,
         // label: "Optional string that replaces customer email"
@@ -80,7 +80,7 @@
           axios.get('https://api.paystack.co/transaction/verify/' + resp.reference,
           {
             headers: {
-              authorization: "Bearer sk_test_ee0f95dce9cc25ad79f964ffd11689013af57e2d"
+              authorization: "Bearer sk_live_cf988a7190414e20bfd5f8c017ad1626f79a6380"
             }
           }
           )
