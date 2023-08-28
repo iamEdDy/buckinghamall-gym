@@ -59,11 +59,11 @@
 
         let subAmount;
         if(subcriptionType == "monthly") {
-          subAmount = 19490;
+          subAmount = 15000;
         } else if (subcriptionType == "quarterly") {
-          subAmount = 51590;
+          subAmount = 45000;
         } else if (subcriptionType == "annually") {
-          subAmount = 183490;
+          subAmount = 150000;
         }
       
   
