@@ -1,0 +1,1 @@
+(()=>{let n;document.addEventListener("DOMContentLoaded",(()=>{document.getElementById("gym-annual-button-container").innerHTML+='\n    <button type="button" onclick="checkoutButtonAnnualGym()" class="button button-outline-secondary">Place Order</button>\n    ',n=33432,document.getElementById("gym-annual-amount").value=197431}))})();

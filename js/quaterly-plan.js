@@ -58,7 +58,7 @@ function getValueByIdQuaterlyGym(elementId) {
               phone_number: phone,
               is_active: 1,
             }
-            axios.post('http://127.0.0.1:8001/api/users', data)
+            axios.post('https://buckinghammall-gym-api/api/users', data)
             .then(response => {
               console.log('Response:', response.data);
               document.cookie = `gymID=${response?.data?.id}; path=/;`;
