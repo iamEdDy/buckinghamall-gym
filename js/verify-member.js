@@ -10,7 +10,7 @@
   function getExistingMemberDetails() {
     const memberEmail = getValueByIdMemberVerify('verify-existing-member-email');
     console.log(memberEmail)
-    axios.get('https://buckinghammall-gym-api/api/users/search/' + memberEmail)
+    axios.get('https://buckinghammall-gym-api.eddyspace.com/api/users/search/' + memberEmail)
     .then(response => {
       console.log('Response:', response.data);
       if(response.error == "User not found") {
@@ -102,7 +102,7 @@
                 is_active: 1,
               }
 
-              axios.put('https://buckinghammall-gym-api/api/users/' + memberID, data)
+              axios.put('https://buckinghammall-gym-api.eddyspace.com/api/users/' + memberID, data)
               .then(response => {
                 console.log('Response:', response.data);
                 document.cookie = `gymID=${response?.data?.id}; path=/;`;

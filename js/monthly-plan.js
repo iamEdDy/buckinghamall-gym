@@ -58,7 +58,7 @@
                 phone_number: phone,
                 is_active: 1,
               }
-              axios.post('https://buckinghammall-gym-api/api/users', data)
+              axios.post('https://buckinghammall-gym-api.eddyspace.com/api/users', data)
               .then(response => {
                 console.log('Response:', response.data);
                 document.cookie = `gymID=${response?.data?.id}; path=/;`;
@@ -69,9 +69,9 @@
               .catch(error => {
                 console.error('Error:', error);
               });
-              // setTimeout(() => {
-              //   window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
-              // }, 2000)
+               setTimeout(() => {
+                 window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
+               }, 2000)
             }
           })
           .catch(function(error) {
