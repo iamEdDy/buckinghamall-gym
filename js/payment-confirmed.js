@@ -51,7 +51,7 @@
     function populateItemContainerPaymentConfirmedGym() {
       const itemContainer = document.getElementById('gym-payment-confirmed-container');
     
-      const theMemberID = getCookie('memberID');
+      const theMemberID = getCookie('membershipID');
       if(!theMemberID) {
         const productHTML2 = createProductHTMLPaymentConfirmedGym2();
         itemContainer.innerHTML += productHTML2;
