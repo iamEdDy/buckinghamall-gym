@@ -1,8 +1,8 @@
     // Function to create the HTML structure for a product
-    function createProductHTMLPaymentConfirmedGym(theGymID) {
+    function createProductHTMLPaymentConfirmedGym(theMemberID) {
       return `
         <div class="page-intro">
-          <h2>Payment Confirmed #${theGymID}</h2>
+          <h2>Payment Confirmed #${theMemberID}</h2>
           <p>Kindly show your subscription ID to the GYM Instructor(s) to activate your subscription</p>
           <ul class="bread-crumb">
               <li class="has-separator">
@@ -10,7 +10,7 @@
                   <a href="/">Home</a>
               </li>
               <li class="is-marked">
-                  <a href="payment-confirmed.html">#${theGymID}</a>
+                  <a href="payment-confirmed.html">#${theMemberID}</a>
               </li>
           </ul>
         </div>
@@ -51,12 +51,12 @@
     function populateItemContainerPaymentConfirmedGym() {
       const itemContainer = document.getElementById('gym-payment-confirmed-container');
     
-      const theGymID = getCookie('gymID');
-      if(!theGymID) {
+      const theMemberID = getCookie('memberID');
+      if(!theMemberID) {
         const productHTML2 = createProductHTMLPaymentConfirmedGym2();
         itemContainer.innerHTML += productHTML2;
       } else {
-        const productHTML = createProductHTMLPaymentConfirmedGym(theGymID);
+        const productHTML = createProductHTMLPaymentConfirmedGym(theMemberID);
         itemContainer.innerHTML += productHTML;
       }
     }
