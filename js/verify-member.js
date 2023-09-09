@@ -58,7 +58,9 @@
       const memberID = getCookieMember('memberID')
 
         let subAmount;
-        if(subcriptionType == "monthly") {
+        if(subcriptionType == "daily") {
+          subAmount = 2000;
+        } else if(subcriptionType == "monthly") {
           subAmount = 15000;
         } else if (subcriptionType == "quarterly") {
           subAmount = 45000;
@@ -114,9 +116,6 @@
               .catch(error => {
                 console.error('Error:', error);
               });
-              // setTimeout(() => {
-              //   window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
-              // }, 2000)
             }
           })
           .catch(function(error) {

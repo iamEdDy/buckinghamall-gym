@@ -1,12 +1,12 @@
-  let monthlyAmount;
-  function setAmountMonthlyGym() {
-      monthlyAmount = 25000;
-      document.getElementById('gym-monthly-amount').value = 25000;
+  let dailyAmount;
+  function setAmountDailyGym() {
+      dailyAmount = 2000;
+      document.getElementById('gym-daily-amount').value = 2000;
   }
   
   
     // Function to get the value of an element by its ID
-  function getValueByIdMonthlyGym(elementId) {
+  function getValueByIdDailyGym(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
         return element.value;
@@ -15,19 +15,19 @@
   }
   
     // Function to retrieve billing details and order notes
-    function getBillingDetailsMonthlyGym() {
-      const firstName = getValueByIdMonthlyGym('gym-monthly-first-name');
-      const lastName = getValueByIdMonthlyGym('gym-monthly-last-name');
-      const address = getValueByIdMonthlyGym('gym-monthly-req-st-address');
-      const country = getValueByIdMonthlyGym('gym-monthly-select-country');
-      const city = getValueByIdMonthlyGym('gym-monthly-town-city');
-      const email = getValueByIdMonthlyGym('gym-monthly-email');
-      const phone = getValueByIdMonthlyGym('gym-monthly-phone');
+    function getBillingDetailsDailyGym() {
+      const firstName = getValueByIdDailyGym('gym-daily-first-name');
+      const lastName = getValueByIdDailyGym('gym-daily-last-name');
+      const address = getValueByIdDailyGym('gym-daily-req-st-address');
+      const country = getValueByIdDailyGym('gym-daily-select-country');
+      const city = getValueByIdDailyGym('gym-daily-town-city');
+      const email = getValueByIdDailyGym('gym-daily-email');
+      const phone = getValueByIdDailyGym('gym-daily-phone');
   
       let handler = PaystackPop.setup({
         key: 'pk_live_7e1a4cb8c8993649d3c9945479f39f8f8405679f', // Replace with your public key
         email: email,
-        amount: monthlyAmount * 100,
+        amount: dailyAmount * 100,
         // label: "Optional string that replaces customer email"
         onClose: function(){
           alert('Transaction was not completed, window closed.');
@@ -45,10 +45,10 @@
             // console.log(response.data);
             // Handle success here
             if(response?.data?.data?.status == "success") {
-              document.getElementById('gym-monthly-text').innerHTML = "Please wait while we confirm your payment..."
+              document.getElementById('gym-daily-text').innerHTML = "Please wait while we confirm your payment..."
               // let message = 'Payment complete! Reference: ' + firstRes.reference;
               const data = {
-                subscription_type: "monthly",
+                subscription_type: "daily",
                 new: 0,
                 tx_reference: firstRes.reference,
                 first_name: firstName,
@@ -70,6 +70,9 @@
               .catch(error => {
                 // console.error('Error:', error);
               });
+              //  setTimeout(() => {
+              //    window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
+              //  }, 2000)
             }
           })
           .catch(function(error) {
@@ -98,25 +101,25 @@
       // use return in real context instead of console.log
     }
   
-    async function checkoutButtonMonthlyGym() {
+    async function checkoutButtonDailyGym() {
   
-      getBillingDetailsMonthlyGym()
+      getBillingDetailsDailyGym()
     }
   
   
     
     // Function to create the HTML structure for a product
-    function createProductHTMLMonthlyGym() {
+    function createProductHTMLDailyGym() {
       return `
-      <button type="button" onclick="checkoutButtonMonthlyGym()" class="button button-outline-secondary">Place Order</button>
+      <button type="button" onclick="checkoutButtonDailyGym()" class="button button-outline-secondary">Place Order</button>
       `;
     }
     
     // Function to populate the item container with fetched data
-    function populateItemContainerMonthlyGym() {
-      const itemContainer = document.getElementById('gym-monthly-button-container');
+    function populateItemContainerDailyGym() {
+      const itemContainer = document.getElementById('gym-daily-button-container');
     
-        const productHTML = createProductHTMLMonthlyGym();
+        const productHTML = createProductHTMLDailyGym();
         itemContainer.innerHTML += productHTML;
     }
 
@@ -124,8 +127,8 @@
     
     // Fetch data and populate the item container on page load
     document.addEventListener('DOMContentLoaded', () => {
-      populateItemContainerMonthlyGym();
-      setAmountMonthlyGym()
+      populateItemContainerDailyGym();
+      setAmountDailyGym()
     
           // fetchData()
           // .then(data => {

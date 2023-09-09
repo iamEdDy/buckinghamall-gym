@@ -70,9 +70,6 @@ function getValueByIdQuaterlyGym(elementId) {
             .catch(error => {
               // console.error('Error:', error);
             });
-            // setTimeout(() => {
-            //   window.location.href = "http://gym.buckinghammall.com/payment-confirmed.html?id=" + theOrderID;
-            // }, 2000)
           }
         })
         .catch(function(error) {
