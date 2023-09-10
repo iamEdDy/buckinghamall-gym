@@ -1,7 +1,7 @@
 let quaterlyAmount;
 function setAmountQuaterlyGym() {
-    quaterlyAmount = 55000;
-    document.getElementById('gym-quaterly-amount').value = 55000;
+    quaterlyAmount = 37000;
+    document.getElementById('gym-quaterly-amount').value = 37000;
 }
 
 

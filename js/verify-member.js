@@ -59,13 +59,13 @@
 
         let subAmount;
         if(subcriptionType == "daily") {
-          subAmount = 2000;
+          subAmount = 1500;
         } else if(subcriptionType == "monthly") {
-          subAmount = 15000;
+          subAmount = 12000;
         } else if (subcriptionType == "quarterly") {
-          subAmount = 45000;
+          subAmount = 32000;
         } else if (subcriptionType == "annually") {
-          subAmount = 150000;
+          subAmount = 128000;
         }
       
   
