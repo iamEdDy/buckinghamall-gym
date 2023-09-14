@@ -1,7 +1,7 @@
   let monthlyAmount;
   function setAmountMonthlyGym() {
-      monthlyAmount = 17000;
-      document.getElementById('gym-monthly-amount').value = 17000;
+      monthlyAmount = 19000;
+      document.getElementById('gym-monthly-amount').value = 19000;
   }
   
   
