@@ -45,6 +45,7 @@
             // console.log(response.data);
             // Handle success here
             if(response?.data?.data?.status == "success") {
+              document.getElementById('overlay-loader').style.display = "block";
               document.getElementById('gym-monthly-text').innerHTML = "Please wait while we confirm your payment..."
               // let message = 'Payment complete! Reference: ' + firstRes.reference;
               const data = {
@@ -63,9 +64,10 @@
                 // console.log('Response:', response.data);
                 document.cookie = `gymID=${response?.data?.id}; path=/;`;
                 document.cookie = `membershipID=${response?.data?.user_id}; path=/;`;
+                document.getElementById('overlay-loader').style.display = "none";
                 setTimeout(() => {
                   window.location.href = "https://gym.buckinghammall.com/payment-confirmed.html";
-                }, 2000)
+                }, 1000)
               })
               .catch(error => {
                 // console.error('Error:', error);
