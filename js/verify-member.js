@@ -46,31 +46,25 @@
   
     // Function to retrieve billing details and order notes
     function getBillingDetailsMemberVerify() {
-      const firstName = getValueByIdMemberVerify('verify-member-first-name');
-      const lastName = getValueByIdMemberVerify('verify-member-last-name');
-      const subcriptionType = getValueByIdMemberVerify('verify-member-subscription-type');
-      const address = getValueByIdMemberVerify('verify-member-req-st-address');
-      const country = getValueByIdMemberVerify('verify-member-select-country');
-      const city = getValueByIdMemberVerify('verify-member-town-city');
-      const email = getValueByIdMemberVerify('verify-member-email');
-      const phone = getValueByIdMemberVerify('verify-member-phone');
+      const email = getValueByIdMemberVerify('verify-existing-member-email');
+      const subscriptionType = getValueByIdMemberVerify('verify-member-subscription-type');
 
       const memberID = getCookieMember('memberID')
 
         let subAmount;
-        if(subcriptionType == "daily") {
+        if(subscriptionType == "daily") {
           subAmount = 1500;
-        } else if(subcriptionType == "monthly") {
+        } else if(subscriptionType == "monthly") {
           subAmount = 12000;
-        } else if (subcriptionType == "quarterly") {
+        } else if (subscriptionType == "quarterly") {
           subAmount = 32000;
-        } else if (subcriptionType == "annually") {
+        } else if (subscriptionType == "annually") {
           subAmount = 128000;
         }
       
   
       let handler = PaystackPop.setup({
-        key: 'pk_live_7e1a4cb8c8993649d3c9945479f39f8f8405679f', // Replace with your public key
+        key: 'pk_test_85e318c7a80afb3deb517819d0a70b4186ba8007', // Replace with your public key
         email: email,
         amount: subAmount * 100,
         // label: "Optional string that replaces customer email"
@@ -82,7 +76,7 @@
           axios.get('https://api.paystack.co/transaction/verify/' + resp.reference,
           {
             headers: {
-              authorization: "Bearer sk_live_cf988a7190414e20bfd5f8c017ad1626f79a6380"
+              authorization: "Bearer sk_test_7aba895ce19677549cd28c786c4806378c8b098a"
             }
           }
           )
@@ -93,18 +87,13 @@
               document.getElementById('verify-member-text').innerHTML = "Please wait while we confirm your payment..."
               // let message = 'Payment complete! Reference: ' + firstRes.reference;
               const data = {
-                subscription_type: subcriptionType,
-                new: 0,
+                subscription_type: subscriptionType,
                 tx_reference: firstRes.reference,
-                first_name: firstName,
-                last_name: lastName,
-                address: address,
                 email: email,
-                phone_number: phone,
                 is_active: 1,
               }
 
-              axios.put('https://buckinghammall-gym-api.eddyspace.com/api/users/' + memberID, data)
+              axios.put('https://buckinghammall-gym-api.eddyspace.com/api/users/subscription/' + email, data)
               .then(response => {
                 console.log('Response:', response.data);
                 document.cookie = `gymID=${response?.data?.id}; path=/;`;
@@ -127,20 +116,11 @@
       })
 
 
-      if((firstName != "") && (lastName != "") && (address != "") && (subcriptionType != "") && (country != "") && (city != "") && (email != "") && (phone != "")) {
+      if((subscriptionType != "") && (email != "")) {
         handler.openIframe();
       }
   
-        console.log(
-          firstName,
-          lastName,
-          address,
-          subcriptionType,
-          country,
-          city,
-          email,
-          phone,
-      );
+
   
       // use return in real context instead of console.log
     }
@@ -158,7 +138,7 @@
     // Function to create the HTML structure for a product
     function createProductHTMLMemberVerify() {
       return `
-      <button type="button" onclick="checkoutButtonMemberVerify()" class="button button-outline-secondary">Place Order</button>
+      <button type="button" onclick="checkoutButtonMemberVerify()" class="button button-outline-secondary">Restart Membership</button>
       `;
     }
 
