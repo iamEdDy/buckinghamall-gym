@@ -13,16 +13,38 @@
     }
     return '';
   }
+
+  function generateRandomEmail() {
+    const usernameLength = Math.floor(Math.random() * 10) + 5; // Random username length between 5 and 14 characters
+    const username = `buck${Array.from({ length: usernameLength - 4 }, () => getRandomCharacter()).join("")}`;
+    
+    return `${username}@buckinghammall.com`;
+  }
+  
+  function getRandomCharacter() {
+    const characters = "abcdefghijklmnopqrstuvwxyz1234567890";
+    return characters[Math.floor(Math.random() * characters.length)];
+  }
+
+  
   
     // Function to retrieve billing details and order notes
     function getBillingDetailsDailyGym() {
+      // const firstName = getValueByIdDailyGym('gym-daily-first-name');
+      // const lastName = getValueByIdDailyGym('gym-daily-last-name');
+      // const address = getValueByIdDailyGym('gym-daily-req-st-address');
+      // const country = getValueByIdDailyGym('gym-daily-select-country');
+      // const city = getValueByIdDailyGym('gym-daily-town-city');
+      // const email = getValueByIdDailyGym('gym-daily-email');
+      // const phone = getValueByIdDailyGym('gym-daily-phone');
+
       const firstName = getValueByIdDailyGym('gym-daily-first-name');
       const lastName = getValueByIdDailyGym('gym-daily-last-name');
-      const address = getValueByIdDailyGym('gym-daily-req-st-address');
-      const country = getValueByIdDailyGym('gym-daily-select-country');
-      const city = getValueByIdDailyGym('gym-daily-town-city');
-      const email = getValueByIdDailyGym('gym-daily-email');
-      const phone = getValueByIdDailyGym('gym-daily-phone');
+      const address = "Funaab";
+      const country = "Nigeria";
+      const city = "Abeokuta";
+      const email = "buckinghammall14@gmail.com";
+      const phone = "null";
   
       let handler = PaystackPop.setup({
         key: 'pk_live_7e1a4cb8c8993649d3c9945479f39f8f8405679f', // Replace with your public key
@@ -48,6 +70,7 @@
               document.getElementById('overlay-loader').style.display = "block";
               document.getElementById('gym-daily-text').innerHTML = "Please wait while we confirm your payment..."
               // let message = 'Payment complete! Reference: ' + firstRes.reference;
+              const randomEmail = generateRandomEmail();
               const data = {
                 subscription_type: "daily",
                 new: 0,
@@ -55,7 +78,7 @@
                 first_name: firstName,
                 last_name: lastName,
                 address: address,
-                email: email,
+                email: randomEmail,
                 phone_number: phone,
                 is_active: 1,
               }
