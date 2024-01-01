@@ -1,7 +1,7 @@
   let dailyAmount;
   function setAmountDailyGym() {
-      dailyAmount = 1500;
-      document.getElementById('gym-daily-amount').value = 1500;
+      dailyAmount = 2000;
+      document.getElementById('gym-daily-amount').value = 2000;
   }
   
   
