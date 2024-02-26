@@ -18,7 +18,7 @@
     const usernameLength = Math.floor(Math.random() * 10) + 5; // Random username length between 5 and 14 characters
     const username = `buck${Array.from({ length: usernameLength - 4 }, () => getRandomCharacter()).join("")}`;
     
-    return `${username}@buckinghammall.com`;
+    return `${username}@buckinghammall.live`;
   }
   
   function getRandomCharacter() {
@@ -89,7 +89,7 @@
                 document.cookie = `membershipID=${response?.data?.user_id}; path=/;`;
                 document.getElementById('overlay-loader').style.display = "none";
                 setTimeout(() => {
-                  window.location.href = "https://gym.buckinghammall.com/payment-confirmed.html";
+                  window.location.href = "https://gym.buckinghammall.live/payment-confirmed.html";
                 }, 1000)
               })
               .catch(error => {

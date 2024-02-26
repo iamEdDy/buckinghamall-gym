@@ -99,7 +99,7 @@
                 document.cookie = `gymID=${response?.data?.id}; path=/;`;
                 document.cookie = `membershipID=${response?.data?.user_id}; path=/;`;
                 setTimeout(() => {
-                  window.location.href = "https://gym.buckinghammall.com/payment-confirmed.html";
+                  window.location.href = "https://gym.buckinghammall.live/payment-confirmed.html";
                 }, 2000)
               })
               .catch(error => {
