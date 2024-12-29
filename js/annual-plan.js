@@ -1,7 +1,7 @@
 let annualAmount;
 function setAmountAnnualGym() {
-    annualAmount = 162000;
-    document.getElementById('gym-annual-amount').value = 162000;
+    annualAmount = 200000;
+    document.getElementById('gym-annual-amount').value = 200000;
 }
 
 
