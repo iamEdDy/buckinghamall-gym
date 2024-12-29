@@ -55,11 +55,11 @@
         if(subscriptionType == "daily") {
           subAmount = 2000;
         } else if(subscriptionType == "monthly") {
-          subAmount = 15000;
+          subAmount = 18000;
         } else if (subscriptionType == "quarterly") {
-          subAmount = 40000;
+          subAmount = 50000;
         } else if (subscriptionType == "annually") {
-          subAmount = 155000;
+          subAmount = 200000;
         }
       
   
